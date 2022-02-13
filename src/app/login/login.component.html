@@ -1,1 +1,10 @@
-<p>login works!</p>
+<h2>Login</h2>
+<form (ngSubmit)="onLoginSubmit()" #loginform="ngForm">
+  <div>
+    <input type="text" name="username" placeholder="Enter the username" ngModel />
+    <br><br>
+    <input type="password" name="password" placeholder="Enter the password" ngModel />
+  </div>
+  
+  <button style="margin-top: 20px;" type="submit">OK</button>
+</form>
