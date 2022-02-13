@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/ng-auth-passportjs'),
+      dir: require('path').join(__dirname, './coverage/ng-auth-passportjs-jwt'),
       subdir: '.',
       reporters: [
         { type: 'html' },
