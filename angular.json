@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-auth-passportjs": {
+    "ng-auth-passportjs-jwt": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ng-auth-passportjs:build:production"
+              "browserTarget": "ng-auth-passportjs-jwt:build:production"
             },
             "development": {
-              "browserTarget": "ng-auth-passportjs:build:development"
+              "browserTarget": "ng-auth-passportjs-jwt:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-auth-passportjs:build"
+            "browserTarget": "ng-auth-passportjs-jwt:build"
           }
         },
         "test": {
