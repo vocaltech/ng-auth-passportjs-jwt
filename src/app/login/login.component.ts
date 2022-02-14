@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { AuthService } from '../services/auth.service'
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
       password
     }
 
-    this.http.post('http://localhost:4500/api/users/login', reqObj, { headers }).subscribe(
+    this.http.post(environment.url_login, reqObj, { headers }).subscribe(
       (response) => {
         console.log(response);
         this.auth.setLocalStorage(response)

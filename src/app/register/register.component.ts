@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
       password
     };
 
-    this.http.post('http://localhost:4500/api/users/register', reqObj, { headers }).subscribe(
+    this.http.post(environment.url_register, reqObj, { headers }).subscribe(
       (response) => {
         console.log(response);
       },
