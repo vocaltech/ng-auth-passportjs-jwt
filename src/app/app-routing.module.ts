@@ -4,11 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProtectedComponent } from './protected/protected.component';
+import { LogoutComponent } from './logout/logout.component'
 
 const routes: Routes = [
+  //{ path: '', redirectTo: "login", pathMatch: 'full'},
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "protected", component: ProtectedComponent }
+  { path: "protected", component: ProtectedComponent },
+  { path: "logout", component: LogoutComponent }
 ];
 
 @NgModule({
