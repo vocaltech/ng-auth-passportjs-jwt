@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -7,7 +7,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
-  title = 'ng-auth-passportjs-jwt';
+export class AppComponent implements OnInit {
+  title = 'Passportjs JWT Authentication';
   currentConfig = environment.currentConfig;
+
+  constructor() {}
+
+  ngOnInit(): void {
+
+  }
 }
