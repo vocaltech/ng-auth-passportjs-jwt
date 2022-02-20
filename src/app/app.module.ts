@@ -11,15 +11,13 @@ import { ProtectedComponent } from './protected/protected.component';
 
 import { AuthService } from './services/auth.service'
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { LogoutComponent } from './logout/logout.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    ProtectedComponent,
-    LogoutComponent
+    ProtectedComponent
   ],
   imports: [
     BrowserModule,
