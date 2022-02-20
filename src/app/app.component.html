@@ -1,10 +1,10 @@
-<h1>Passportjs JWT Authentication (currentConfig: {{currentConfig}})</h1>
+<nav>
+    <span>Welcome</span>
+    <a routerLink="/logout">Logout</a>
+    <a routerLink="/protected">Protected Route</a>
+    <a routerLink="/login">Login</a>
+</nav>
 
-<p><a routerLink="/login">Login</a>&nbsp;<a routerLink="/logout">Logout</a></p>
-<p><a routerLink="/register">Register</a></p>
-<p><a routerLink="/protected">Go to Protected Route</a></p>
-<hr />
-<p>Selected route displays below:</p>
-<hr />
+<h1>{{title}} (currentConfig: {{currentConfig}})</h1>
 
 <router-outlet></router-outlet>
