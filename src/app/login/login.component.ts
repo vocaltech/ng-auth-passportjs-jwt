@@ -12,6 +12,9 @@ import { environment } from 'src/environments/environment';
 })
 
 export class LoginComponent implements OnInit {
+  isLoggedIn = false;
+  username = ''
+
   // This will give us access to the form
   @ViewChild("loginform", { static: false }) 
   loginForm!: NgForm;
@@ -21,22 +24,33 @@ export class LoginComponent implements OnInit {
     private auth: AuthService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoggedIn = this.auth.isLoggedIn()
+    this.username = this.auth.getUsername()
+
+    console.log(`onInit: username: ${this.username} - isLoggedIn: ` + this.auth.isLoggedIn())
+  }
 
   onLoginSubmit() {
-    const username = this.loginForm.value.username;
-    const password = this.loginForm.value.password;
+    const _username = this.loginForm.value.username;
+    const _password = this.loginForm.value.password;
 
     const headers = new HttpHeaders({ 'Content-type': 'application/json' })
 
     const reqObj = {
-      username,
-      password
+      username: _username,
+      password: _password
     }
 
     this.http.post(environment.url_login, reqObj, { headers }).subscribe(
       (response) => {
         console.log(response);
+
+        this.isLoggedIn = true;
+        this.username = _username as string
+
+        this.auth.setLoggedIn(true)
+        this.auth.setUsername(this.username);
         this.auth.setLocalStorage(response)
       },
       (error) => {
