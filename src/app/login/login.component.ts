@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 
 export class LoginComponent implements OnInit {
   isLoggedIn = false;
-  username = ''
+  username = '';
 
   // This will give us access to the form
   @ViewChild("loginform", { static: false }) 
@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.username = _username as string
 
-        this.auth.setLoggedIn(true)
         this.auth.setUsername(this.username);
+        this.auth.setLoggedIn(true)
         this.auth.setLocalStorage(response)
       },
       (error) => {
