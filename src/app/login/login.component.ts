@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { AuthService } from '../services/auth.service'
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,14 +22,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private auth: AuthService
+    private auth: AuthService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
     this.isLoggedIn = this.auth.isLoggedIn()
     this.username = this.auth.getUsername()
-
-    console.log(`onInit: username: ${this.username} - isLoggedIn: ` + this.auth.isLoggedIn())
   }
 
   onLoginSubmit() {
@@ -52,12 +52,16 @@ export class LoginComponent implements OnInit {
         this.auth.setUsername(this.username);
         this.auth.setLoggedIn(true)
         this.auth.setLocalStorage(response)
+
+        // redirection
+        this._router.navigate(['protected'])
+
       },
       (error) => {
         console.log(error);
       },
       () => {
-        console.log('done!');
+        console.log('http post done!');
       }
     )
   }
