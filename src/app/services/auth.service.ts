@@ -43,9 +43,7 @@ export class AuthService {
     this._username = '';
 
     // notify observers
-    this.subject.next({
-      isLogged: this._isLoggedIn
-    })
+    this.setLoggedIn(false)
     
     localStorage.removeItem('id_token');
   }
