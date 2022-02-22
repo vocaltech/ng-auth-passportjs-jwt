@@ -10,6 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 
 export class RegisterComponent implements OnInit {
+  
+  // This will give us access to the form
   @ViewChild("registerform", { static: false })
   registerForm!: NgForm
 
