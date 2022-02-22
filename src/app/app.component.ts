@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
@@ -9,21 +9,30 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Passportjs JWT Authentication';
   currentConfig = environment.currentConfig;
   subscription!: Subscription;
-  username!: string;
+  username = '';
+  isLoggedIn = false
 
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this.auth.onLogin().subscribe({
       next: (v) => {
-        console.log(v.isLogged)
+        this.isLoggedIn = v.isLogged
         this.username = v.username
+        
+        this.cdr.detectChanges()
       }
     })
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
 }
