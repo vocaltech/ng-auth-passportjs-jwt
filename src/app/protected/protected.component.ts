@@ -45,7 +45,7 @@ export class ProtectedComponent implements OnInit {
         error.status === 401 ? this.unauthorizedMessage = error.statusText: this.unauthorizedMessage = error.message
       },
       () => {
-        console.log('done')
+        console.log('Http done !')
       }
     )
   }
