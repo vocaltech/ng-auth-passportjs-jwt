@@ -1,16 +1,18 @@
-<h2>Login Form</h2>
 <form (ngSubmit)="onLoginSubmit()" #loginform="ngForm">
   <div class="container">
-    <div class="form-control">
+    <div>
+      <span>Login</span>
+    </div>
+    <div>
       <input type="text" name="username" placeholder="Enter the username" ngModel />
     </div>
-    <div class="form-control">
+    <div>
       <input type="password" name="password" placeholder="Enter the password" ngModel />
     </div>
-    <div class="form-control">
-      <button type="submit">Login</button>
+    <div>
+      <button type="submit">LOGIN</button>
     </div>
-    <div style="padding: 10px;">
+    <div>
       Need an account ?&nbsp;<a routerLink="/register">Register</a>
     </div>
   </div>
