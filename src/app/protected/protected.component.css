@@ -1,0 +1,11 @@
+.container {
+    margin-top: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+div > span {
+    font-size: 25px;
+}
