@@ -1,9 +1,10 @@
-<div *ngIf="isLoggedIn; else loggedFalse">
-    Access granted for <b>{{username}}</b>
+<div class="container">
+    <div *ngIf="isLoggedIn; else loggedFalse">
+        <span>
+            Access granted for <b style="color: orange">{{username}}</b>
+        </span>
+    </div>
+    <ng-template #loggedFalse>{{unauthorizedMessage}}</ng-template>
 </div>
-<ng-template #loggedFalse>{{unauthorizedMessage}}</ng-template>
 
-<br>
-
-<a routerLink="/logout" *ngIf="isLoggedIn">Logout</a>
 
