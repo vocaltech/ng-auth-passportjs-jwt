@@ -1,14 +1,33 @@
 .container {
+    width: 20%;
+    height: 240px;
     display: flex;
     flex-direction: column;
-    width: 50%;
-    border: 2px solid blue;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    border: 1px solid rgb(63, 81, 181);
+    border-radius: 20px;
 }
 
-.form-control {
-    padding: 10px;
+div > span {
+    font-size: 24px;
+    font-weight: bold;
 }
 
 div > input {
-    width: 70%;
+    width: 200px;
+    padding: 8px;
+}
+
+div > button {
+    width: 220px;
+    height: 32px;
+    color: white;
+    background-color: rgb(63, 81, 181);
+}
+
+div > button:hover {
+    background-color: orange;
+    color: black;
 }
