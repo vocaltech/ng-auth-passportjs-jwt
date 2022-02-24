@@ -19,7 +19,8 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "allowSyntheticDefaultImports": true /* used to import 'ms' module */
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
