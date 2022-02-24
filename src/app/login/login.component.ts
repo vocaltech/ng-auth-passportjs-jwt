@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
 
     const reqObj = {
       username: _username,
-      password: _password
+      password: _password,
+      expiresIn: '1d'
     }
 
     this.http.post(environment.url_login, reqObj, { headers }).subscribe(
