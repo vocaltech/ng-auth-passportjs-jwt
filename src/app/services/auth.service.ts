@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
+import ms from 'ms'
+import addMilliseconds from 'date-fns/addMilliseconds'
+import isBefore from 'date-fns/isBefore'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,7 +39,19 @@ export class AuthService {
   setUsername = (val: string) => this._username = val
 
   setLocalStorage(responseObj: any) {
+    const expiresIn = responseObj.expiresIn as string
+    const expiresInMs = ms(expiresIn)
+    console.log(`expiresInMs: ${expiresInMs}`)
+
+    const now = Date.now()
+    const expiresAt = addMilliseconds(now, expiresInMs)
+    const isBeforeExpiresAt = isBefore(now, expiresAt)
+
+    console.log(`now: ${new Date(now)} - expiresAt: ${expiresAt}`)
+    console.log(`isBeforeExpiresAt: ${isBeforeExpiresAt}`)
+
     localStorage.setItem('id_token', responseObj.token)
+    localStorage.setItem('expiresAt', new Date(expiresAt).toISOString())
   }
 
   logout() {
@@ -46,5 +62,6 @@ export class AuthService {
     this.setLoggedIn(false)
     
     localStorage.removeItem('id_token');
+    localStorage.removeItem('expiresAt')
   }
 }
