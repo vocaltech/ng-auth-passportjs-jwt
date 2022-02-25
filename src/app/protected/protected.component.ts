@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 
 import { AuthService } from '../services/auth.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-protected',
@@ -17,7 +18,8 @@ export class ProtectedComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private auth: AuthService
+    private auth: AuthService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +29,14 @@ export class ProtectedComponent implements OnInit {
       this.username = this.auth.getUsername();
       console.log(`logged true - access granted for ${this.username}`)
 
+      // check if token is expired
+      const isTokenExpired = this.auth.isTokenExpired()
+      console.log(`[protected.component] isTokenExpired: ${isTokenExpired}`)
+
+      if (isTokenExpired) {
+        this.auth.logout();
+        this._router.navigate(['login'])
+      }
     } else {
       console.log('logged false - check access from server!')
       this.checkAccessFromServer()
