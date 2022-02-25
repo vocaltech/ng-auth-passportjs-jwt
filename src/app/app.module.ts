@@ -12,6 +12,7 @@ import { ProtectedComponent } from './protected/protected.component';
 import { AuthService } from './services/auth.service'
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LogoutComponent } from './logout/logout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LogoutComponent } from './logout/logout.component';
     RegisterComponent,
     LoginComponent,
     ProtectedComponent,
-    LogoutComponent
+    LogoutComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
