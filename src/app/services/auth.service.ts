@@ -9,10 +9,9 @@ import isBefore from 'date-fns/isBefore'
   providedIn: 'root'
 })
 
-//TODO: expiresAt w/date-fns
 export class AuthService {
-  private _isLoggedIn = false;
-  private _username = '';
+  private _isLoggedIn!: boolean;
+  private _username!: string;
   private subject = new Subject<any>();
 
   constructor() { }
@@ -39,19 +38,25 @@ export class AuthService {
   setUsername = (val: string) => this._username = val
 
   setLocalStorage(responseObj: any) {
-    const expiresIn = responseObj.expiresIn as string
-    const expiresInMs = ms(expiresIn)
-    console.log(`expiresInMs: ${expiresInMs}`)
-
-    const now = Date.now()
-    const expiresAt = addMilliseconds(now, expiresInMs)
-    const isBeforeExpiresAt = isBefore(now, expiresAt)
-
-    console.log(`now: ${new Date(now)} - expiresAt: ${expiresAt}`)
-    console.log(`isBeforeExpiresAt: ${isBeforeExpiresAt}`)
+    const expiresInMs = ms(responseObj.expiresIn as string)
+    const expiresAt = addMilliseconds(Date.now(), expiresInMs)
 
     localStorage.setItem('id_token', responseObj.token)
     localStorage.setItem('expiresAt', new Date(expiresAt).toISOString())
+  }
+
+  isTokenExpired() {
+    const now = Date.now()
+    const expiresAt = localStorage.getItem('expiresAt') as string
+    const expiresDate = Date.parse(expiresAt)
+
+    console.log(`now: ${now} - expiresDate: ${expiresDate}`)
+
+    if (isBefore(now, expiresDate)) {
+      return false
+    } 
+
+    return true
   }
 
   logout() {
